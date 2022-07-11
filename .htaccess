@@ -1,0 +1,10 @@
+RewriteEngine On
+# Route category
+RewriteRule category/([0-9]+)$ category.php?id_category=$1 [L]
+RewriteRule category/$ category.php
+RewriteRule category$ category.php
+
+# Route topic
+RewriteRule topic/([0-9]+)$ topic.php?id_topic=$1 [L]
+RewriteRule topic/$ topic.php
+RewriteRule topic$ topic.php
