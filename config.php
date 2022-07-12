@@ -3,7 +3,7 @@ require_once 'function.php';
 require_once 'header.php';
 
 define('DB_USER', 'root');
-define('DB_PASS', 'root');
+define('DB_PASS', '');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'cepegra_forum');
 

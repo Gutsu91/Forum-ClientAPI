@@ -1,10 +1,15 @@
 RewriteEngine On
-# Route category
+# -------- Route category -------- #
 RewriteRule category/([0-9]+)$ category.php?id_category=$1 [L]
 RewriteRule category/$ category.php
 RewriteRule category$ category.php
 
-# Route topic
+# ---------- Route topic ---------- #
 RewriteRule topic/([0-9]+)$ topic.php?id_topic=$1 [L]
 RewriteRule topic/$ topic.php
 RewriteRule topic$ topic.php
+
+# ---------_- Route user ------_---- #
+RewriteRule user/([0-9+])$ user.php?id_user=$1 [L]
+RewriteRule user/$ user.php
+RewriteRule user$ user.php
