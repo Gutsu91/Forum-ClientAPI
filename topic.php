@@ -15,16 +15,16 @@ if($_SERVER['REQUEST_METHOD'] = 'GET') :
         ON m.id_user = u.id_user
       WHERE m.id_topic = 1",
     $_GET['id_topic']);
-    $topic['response'] = "One specific topic";
+    $topic['response']['message'] = "One specific topic";
   else:
     $req_topic = ("SELECT * FROM topic");
-    $topic['response'] = "All topics";
+    $topic['response']['message'] = "All topics";
   endif;
   $result = $connect->query($req_topic);
   echo $connect->error;
-  $topic['code'] = 200;
-  $topic['time'] = date('Y-m-d,H:i:s');
-  $topic['nbhits'] = $result->num_rows;
+  $topic['response']['code'] = 200;
+  $topic['response']['time'] = date('Y-m-d,H:i:s');
+  $topic['response']['nbhits'] = $result->num_rows;
   while($row = $result->fetch_assoc()):
     $topic['data'][] = $row;
   endwhile;
