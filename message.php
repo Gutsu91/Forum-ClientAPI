@@ -1,5 +1,6 @@
 <?php
 require_once 'config.php';
+require_once "verif_auth.php";
 
 /* Gestion du GET */
 if($_SERVER['REQUEST_METHOD'] == 'GET') :
@@ -23,12 +24,12 @@ endif;
 if($_SERVER['REQUEST_METHOD'] == 'POST') :
   $json = file_get_contents('php://input');
   $arrayPOST = json_decode($json, true);
-  if(isset($arrayPOST['id_topic']) AND isset($arrayPOST['message']) AND isset($arrayPOST['id_user'])) :
+  if(isset($arrayPOST['id_topic']) AND isset($arrayPOST['message']) AND isset($_SESSION['id_user'])) :
       $req_message = sprintf(
         "INSERT INTO message SET id_topic=%d, message='%s', id_user=%d, is_topic_starter='false'",
         $arrayPOST['id_topic'],
         addslashes(strip_tags($arrayPOST['message'])),
-        $arrayPOST['id_user']
+        $_SESSION['user']
       );
       $connect->query($req_message);
       echo $connect->error;
@@ -38,12 +39,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') :
       $message['response']['message'] = "Ajout du message '" . $arrayPOST['message'] ."' sur le topic";
       $message['response']['sql'] = $req_message;
     else:
-      if(isset($_GET['id_topic']) AND isset($arrayPOST['message']) AND isset($_GET['id_user'])):
+      if(isset($_GET['id_topic']) AND isset($arrayPOST['message']) AND isset($_SESSION['id_user'])):
         $req_message = sprintf(
           "INSERT INTO message SET id_topic=%d, message='%s', id_user=%d, is_topic_starter='false'",
         $_GET['id_topic'],
         addslashes(strip_tags($arrayPOST['message'])),
-        $_GET['id_user']
+        $_SESSION['id_user']
       );
       $connect->query($req_message);
       echo $connect->error;

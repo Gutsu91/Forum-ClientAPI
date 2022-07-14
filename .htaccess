@@ -15,7 +15,12 @@ RewriteRule user/$ user.php
 RewriteRule user$ user.php
 
 # --------- Route message --------- #
-RewriteRule message/([0-9]+)/([0-9]+)$ message.php?id_topic=$1&id_user=$2 [L]
+#RewriteRule message/([0-9]+)/([0-9]+)$ message.php?id_topic=$1&id_user=$2 [L]
 RewriteRule message/([0-9]+)$ message.php?id_topic=$1 [L]
 RewriteRule message/$ message.php [L]
 RewriteRule message$ message.php [L]
+
+# --------- Route sessions --------- #
+RewriteRule deconnect$ auth_api.php?delog [L]
+RewriteRule auth/$ auth_api.php [L]
+RewriteRule auth$ auth_api.php [L]

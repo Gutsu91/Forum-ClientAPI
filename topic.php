@@ -1,5 +1,6 @@
 <?php
 require_once 'config.php';
+require_once "verif_auth.php";
 
 /* Gestion du GET */
 if($_SERVER['REQUEST_METHOD'] == 'GET') :
@@ -57,7 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'):
     $topic_id = $connect->insert_id;
     $req_message = sprintf("INSERT INTO message SET message='%s', id_user=%d, id_topic=%d, is_topic_starter = true",
                 addslashes(strip_tags($arrayPOST['message'])),
-                $arrayPOST['id_user'],
+                $_SESSION['user'],
                 $topic_id);
     $connect->query($req_message);
     echo $connect->error;
