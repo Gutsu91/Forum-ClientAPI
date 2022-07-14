@@ -39,7 +39,7 @@ else:
         $row = $result->fetch_assoc();
         //$row = $row[0];
         //print_r($row);
-        $_SESSION['id_user'] = $row['id_user'];
+        $_SESSION['id_user'] = (int)$row['id_user'];
         $_SESSION['token'] = md5($row['user_name'].time());
         $_SESSION['expiration'] = time() + 1 * 600;
         $response['response'] = "OK connecté";
